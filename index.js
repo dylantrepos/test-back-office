@@ -32,7 +32,7 @@ app.use(express.json());
  * Change here your localhost location
  */
 app.use(cors({
-    origin: "*",
+    origin: "http://localhost:5000",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 
