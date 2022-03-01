@@ -21,7 +21,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: new MemcachedStore({
-        hosts: ["127.0.0.1:11211"],
+        hosts: ["127.0.0.1:5500"],
         secret: "123, easy as, easy as 123" // Optionally use transparent encryption for memcache session data
       }),
     cookie: {
