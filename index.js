@@ -21,7 +21,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: new MemcachedStore({
-        hosts: ["https://test-front-office-api.herokuapp.com"],
+        hosts: ["https://test-back-office-api.herokuapp.com"],
         secret: "123, easy as, easy as 123" // Optionally use transparent encryption for memcache session data
       }),
     cookie: {
