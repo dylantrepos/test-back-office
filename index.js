@@ -32,7 +32,7 @@ app.use(express.json());
  * Change here your localhost location
  */
 app.use(cors({
-    origin: "http://localhost:8080/",
+    origin: "https://test-front-office-api.herokuapp.com",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 
