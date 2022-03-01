@@ -4,6 +4,7 @@ const express = require("express");
 const usersRoutes = require('./routes/usersController');
 const cors = require('cors');
 const store = new session.MemoryStore();
+const MemcachedStore = require("connect-memcached")(session);
 let port = process.env.PORT || 5500;
 require("./models/dbConfig");
 
@@ -19,7 +20,10 @@ app.use(session({
     secret: "theSecretKey",
     resave: false,
     saveUninitialized: false,
-    store: store,
+    store: new MemcachedStore({
+        hosts: ["127.0.0.1:11211"],
+        secret: "123, easy as, easy as 123" // Optionally use transparent encryption for memcache session data
+      }),
     cookie: {
         expires: 1000 * 60 * 60 * 24,
     }

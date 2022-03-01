@@ -38,7 +38,6 @@ router.get('/login', (req, res) => {
 
 router.post('/login', (req, res) => {
     const { email, password } = req.body;
-    console.log(email, password)
     if(email && password) {
         UsersModel.findOne({email: email}, function(err, doc) {
             
