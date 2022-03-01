@@ -2,6 +2,7 @@ const express = require("express");
 const router = express();
 const ObjectID = require("mongoose").Types.ObjectId;
 const bcrypt = require("bcryptjs");
+const cors = require('cors');
 
 const { UsersModel } = require("../models/userModel");
 
@@ -26,7 +27,7 @@ router.get('/get/:email', (req, res) => {
 
 
 // Check if login credential are correct
-router.get('/login', (req, res) => {
+router.get('/login', cors(), (req, res) => {
     if(req.session.authenticated) {
         res.status(200).json(req.session)
     } else {

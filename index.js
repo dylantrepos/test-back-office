@@ -32,6 +32,7 @@ app.use(express.json());
  * Change here your localhost location
  */
 app.use(cors({
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 
