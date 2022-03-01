@@ -25,6 +25,7 @@ router.get('/get/:email', (req, res) => {
   });
 });
 
+router.options('/login', cors());
 
 // Check if login credential are correct
 router.get('/login', cors(), (req, res) => {

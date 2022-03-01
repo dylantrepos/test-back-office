@@ -10,8 +10,6 @@ require("./models/dbConfig");
 
 const app = express();
 
-app.options('*', cors()) ;
-
 app.use((req, res, next) => {
     console.log(store.sessions);
     next()
