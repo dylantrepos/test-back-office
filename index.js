@@ -3,13 +3,21 @@ const session = require('express-session');
 const express = require("express");
 const usersRoutes = require('./routes/usersController');
 const cors = require('cors');
-const store = new session.MemoryStore();
-const MemcachedStore = require("connect-memcached")(session);
+var MongoDBStore = require('connect-mongodb-session')(session);
 let port = process.env.PORT || 5500;
 require("./models/dbConfig");
 
-
 const app = express();
+
+const store = new MongoDBStore({
+    uri: 'mongodb+srv://dtdbmgdb:xCQ1MHr8WbiQdXG4@cluster0.l9hpw.mongodb.net/node-login?retryWrites=true&w=majority',
+    collection: 'mySessions'
+  });
+
+// Catch errors
+store.on('error', function(error) {
+    console.log(error);
+  });
 
 app.use((req, res, next) => {
     console.log(store.sessions);
@@ -20,10 +28,7 @@ app.use(session({
     secret: "theSecretKey",
     resave: false,
     saveUninitialized: false,
-    store: new MemcachedStore({
-        hosts: ["https://test-back-office-api.herokuapp.com"],
-        secret: "123, easy as, easy as 123" // Optionally use transparent encryption for memcache session data
-      }),
+    store: store,
     cookie: {
         expires: 1000 * 60 * 60 * 24,
     }
