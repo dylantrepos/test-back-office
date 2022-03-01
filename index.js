@@ -4,6 +4,7 @@ const express = require("express");
 const usersRoutes = require('./routes/usersController');
 const cors = require('cors');
 const store = new session.MemoryStore();
+let port = process.env.PORT || 5500;
 require("./models/dbConfig");
 
 
@@ -41,4 +42,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/users', usersRoutes);
 
-app.listen(5500, () => console.log("Server is alive on 5500"));
+app.get("/", (req, res) => {
+    res.send("Hello world")
+})
+
+app.listen(port, () => console.log("Server is alive on 5500"));

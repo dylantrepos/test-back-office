@@ -11,7 +11,7 @@ const db = process.env.DB_DATABASE;
  * local : "mongodb://localhost:27017/node-login"
  * online : "mongodb://cluster0-shard-00-02.l9hpw.mongodb.net:27017/node-login"
  */
-mongoose.connect(`${conn}://localhost:${port}/${db}`, {
+mongoose.connect(`mongodb://localhost:27017/node-login`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).
