@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const cors = require('cors');
 
 const { UsersModel } = require("../models/userModel");
+const { json } = require("body-parser");
 
 const errIdUnknown = (res, req) => (res.status(400).send(`ID unknown : ${req.params.id}`));
 
@@ -29,11 +30,15 @@ router.get('/get/:email', (req, res) => {
 
 // Check if login credential are correct
 router.get('/login', (req, res) => {
-    if(req.session.authenticated) {
-        res.status(200).json(req.session)
-    } else {
-        res.send({authenticated: false})
-    }
+    res.json({
+        session: req.session,
+        session2: req.cookies["connect.sid"]
+    })
+    // if(req.session.authenticated) {
+    //     res.status(200).json(req.session)
+    // } else {
+    //     res.send({authenticated: false})
+    // }
 })
 
 router.post('/login', (req, res) => {
