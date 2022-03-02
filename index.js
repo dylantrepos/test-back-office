@@ -3,21 +3,12 @@ const session = require('express-session');
 const express = require("express");
 const usersRoutes = require('./routes/usersController');
 const cors = require('cors');
-var MongoDBStore = require('connect-mongodb-session')(session);
+const store = new session.MemoryStore();
 let port = process.env.PORT || 5500;
 require("./models/dbConfig");
 
+
 const app = express();
-
-const store = new MongoDBStore({
-    uri: 'mongodb+srv://dtdbmgdb:xCQ1MHr8WbiQdXG4@cluster0.l9hpw.mongodb.net/node-login?retryWrites=true&w=majority',
-    collection: 'mySessions'
-  });
-
-// Catch errors
-store.on('error', function(error) {
-    console.log(error);
-  });
 
 app.use((req, res, next) => {
     console.log(store.sessions);
