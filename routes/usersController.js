@@ -44,12 +44,14 @@ router.post('/login', (req, res) => {
             if(err) return console.error(`Error login user : ${err}`)
             console.log(doc)
             if(doc === null) return res.send({error: true})
+            console.log("sended 1 : " + res)
             if(req.session.authenticated) {
                 res.status(200).json(req.session);
             } else {
                 if(bcrypt.compareSync(password, doc.password)) {
                     req.session.authenticated = true;
                     req.session.userid = doc.email,
+                    console.log("sended 2 : " + res)
                     res.status(200).json(req.session);
                 } 
                 else {
