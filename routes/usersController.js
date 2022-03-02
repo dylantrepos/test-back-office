@@ -120,7 +120,7 @@ router.delete("/:id", (req, res) => {
 });
 
 router.get("/disconnected", (req, res) => {
-    res.clearCookie('connect.sid', {path: '/', domain: 'localhost'})
+    res.clearCookie('connect.sid', {path: '/', domain: 'https://test-front-office-api.herokuapp.com/'})
     res.end()
 })
 
