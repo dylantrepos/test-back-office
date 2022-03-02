@@ -20,6 +20,8 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: store,
+    proxy: true,
+    name: 'connect.sid',
     cookie: {
         expires: 1000 * 60 * 60 * 24,
         secure: true,
