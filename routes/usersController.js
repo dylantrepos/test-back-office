@@ -30,7 +30,7 @@ router.get('/get/:email', (req, res) => {
 
 // Check if login credential are correct
 router.get('/login', (req, res) => {
-    res.json(req.cookies["connect.sid"])
+    res.send(req.cookies["connect.sid"])
     // if(req.session.authenticated) {
     //     res.status(200).json(req.session)
     // } else {
