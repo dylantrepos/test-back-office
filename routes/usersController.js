@@ -50,6 +50,9 @@ router.post('/login', (req, res) => {
                 if(bcrypt.compareSync(password, doc.password)) {
                     req.session.authenticated = true;
                     req.session.userid = doc.email,
+                    res.cookie('session.sid', doc.email, { maxAge: 900000, httpOnly: true });
+                    console.log('cookie created successfully');
+
                     res.status(200).json(req.session);
                 } 
                 else {

@@ -24,7 +24,7 @@ app.use(session({
     name: 'connect.sid',
     cookie: {
         expires: 1000 * 60 * 60 * 24,
-        secure: false,
+        secure: true,
         httpOnly: true,
         sameSite: 'none'
     }
