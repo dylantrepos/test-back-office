@@ -48,7 +48,6 @@ router.post('/login', (req, res) => {
                 res.status(200).json(req.session);
             } else {
                 if(bcrypt.compareSync(password, doc.password)) {
-                    res.setHeader('Set-Cookie', 'visited=true; Max-Age=3000; HttpOnly, Secure');
                     req.session.authenticated = true;
                     req.session.userid = doc.email,
                     res.status(200).json(req.session);
